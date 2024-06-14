@@ -321,8 +321,12 @@ for k=2:Numerics.Nr+1
             [A2,A1]=get_A1A2(Interior_Model(ilayer),Couplings); 
             [A13, A6, A71, A72, A81, A82, A9, A100, A101, A102, A11, A12]=get_others(Couplings,Interior_Model(ilayer));
              % Apply the effect of the density discontinuity
-            cont_condition(8*(0:(Nmodes-1))+8,:,1) = ...
-            4*pi*Gg*rho_diff*y(8*(0:(Nmodes-1))+1,:,k-1);
+            index1=3*(0:(Nmodes-1))+1;
+            index2=6*Nmodes+2*(0:(Nmodes-1))+2;
+            % cont_condition(8*(0:(Nmodes-1))+8,:,1) = ...
+            % 4*pi*Gg*rho_diff*y(8*(0:(Nmodes-1))+1,:,k-1);
+            cont_condition(index2,:,1) = ...
+            4*pi*Gg*rho_diff*y(index1,:,k-1);
             y_old=y(:,:,k-1) + cont_condition;
         end       
     else
