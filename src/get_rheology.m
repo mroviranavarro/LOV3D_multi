@@ -331,7 +331,9 @@ for ilayer=1:Numerics.Nlayers
             Interior_Model(ilayer).MaxTime = 2*pi*Interior_Model(ilayer).eta0/Interior_Model(ilayer).mu0/Forcing(1).Td;
             Interior_Model(ilayer).elastic = 0;
         else %the layer is elastic
+            if verbose==1
             cprintf([1,0.5,0],['Viscosity for layer ' num2str(ilayer) ' not provided, I will assume the layer is elastic \n'])
+            end
             Interior_Model(ilayer).eta = NaN;
             Interior_Model(ilayer).MaxTime = NaN; 
             Interior_Model(ilayer).elastic = 1;
@@ -340,14 +342,18 @@ for ilayer=1:Numerics.Nlayers
         if ~isempty(Interior_Model(ilayer).Ks0)
             Interior_Model(ilayer).Ks = Interior_Model(ilayer).Ks0/Interior_Model(end).mu0;
         else
+            if verbose==1
             cprintf([1,0.5,0],['Bulk modulus for layer ' num2str(ilayer) ' not provided, I will assume the layer is incompressible \n'])
+            end
             Interior_Model(ilayer).Ks0=1e7*Interior_Model(end).mu0;
             Interior_Model(ilayer).Ks = Interior_Model(ilayer).Ks0/Interior_Model(end).mu0;
         end
         % check if this is an ocean layer 
         if isfield(Interior_Model,'ocean')
             if Interior_Model(ilayer).ocean==1
+                if verbose==1
                 cprintf('cyan',['Layer ' num2str(ilayer) ' is an ocean layer \n'])
+                end
             end
         end
         Interior_Model(ilayer).Gg0 = G; % G
@@ -625,7 +631,9 @@ for ilayer=1:Numerics.Nlayers
         % No lateral variations provided so the layer is assumed to be
         % spherically-symmetric
         else
+            if verbose==1
             cprintf([1,0.5,0],['No lateral variations provided for layer ' num2str(ilayer) ', I will assume the layer is spherically-symmetric \n'])
+            end
             Interior_Model(ilayer).eta_variable=[0 0 0]; 
             Interior_Model(ilayer).mu_variable=[0 0 0]; 
             Interior_Model(ilayer).K_variable=[0 0 0]; 
