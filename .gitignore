@@ -1,7 +1,10 @@
 .DS_Store
 **/.DS_Store
 /data
+!/data
+data/*
 !/data/tests
+!/data/tests/moon
 !/data/README.md
 /files/couplings
 /files/output
