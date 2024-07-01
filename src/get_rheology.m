@@ -934,7 +934,7 @@ end
 rheo_degree_orders = unique(rheo_degree_orders,'rows');
 
 for ilayer=2:Numerics.Nlayers
-    if (Interior_Model(ilayer).uniform==0) & (Interior_Model(ilayer).elastic==0)
+    if (Interior_Model(ilayer).uniform==0)
         % Matrix to be filled, will replace Interior_Model.rheology_variable
         temp_rheology_var = zeros(length(rheo_degree_orders(:,1)),4);
     
