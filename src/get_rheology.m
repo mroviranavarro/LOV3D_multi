@@ -472,9 +472,9 @@ for ilayer=1:Numerics.Nlayers
             end
             
             % get the unique combinations
-            C = unique([nR mR],'rows');
-            nR=C(:,1);
-            mR=C(:,2);
+            % C = unique([nR mR],'rows');
+            % nR=C(:,1);
+            % mR=C(:,2);
             
             %loop over all degrees to make sure the structure have the right shape
             for i=1:length(nR)
@@ -524,7 +524,7 @@ for ilayer=1:Numerics.Nlayers
                 Ynm_stokes.clm=zeros(2*l_max,2*l_max);
                 Ynm_stokes.slm=zeros(2*l_max,2*l_max);
                 Ynm_stokes.lmax=2*l_max-1;
-                Ynm_stokes.clm(nR(i)+1,mR(i)+1)=1;
+                Ynm_stokes.clm(nR(i)+1,abs(mR(i))+1)=1;
                 [Ynm_zlonlat] = SPH_LatLon(Ynm_stokes);
                 Ynm_z = Ynm_zlonlat.z;
                 Delta = max(Ynm_z(:))-min(Ynm_z(:));
@@ -568,24 +568,24 @@ for ilayer=1:Numerics.Nlayers
                     % shear modulus 
                     Interior_Model(ilayer).mu_variable(end+1,1)=nR_fixed;
                     Interior_Model(ilayer).mu_variable(end,2)=-mR_fixed;
-                    Interior_Model(ilayer).mu_variable(end,3)=-1i*(-1)^mR_fixed*sqrt(2)/2*Interior_Model(ilayer).mu_variable_p2p(i,3)/100/Delta;
+                    Interior_Model(ilayer).mu_variable(end,3)=-1i*sqrt(2)/2*Interior_Model(ilayer).mu_variable_p2p(i,3)/100/Delta;
                     Interior_Model(ilayer).mu_variable(end+1,1)=nR_fixed;
                     Interior_Model(ilayer).mu_variable(end,2)=mR_fixed;
-                    Interior_Model(ilayer).mu_variable(end,3)=1i*sqrt(2)/2*Interior_Model(ilayer).mu_variable_p2p(i,3)/100/Delta;
+                    Interior_Model(ilayer).mu_variable(end,3)=1i*(-1)^mR_fixed*sqrt(2)/2*Interior_Model(ilayer).mu_variable_p2p(i,3)/100/Delta;
                     % bulk modulus
                     Interior_Model(ilayer).K_variable(end+1,1)=nR_fixed;
                     Interior_Model(ilayer).K_variable(end,2)=-mR_fixed;
-                    Interior_Model(ilayer).K_variable(end,3)=-1i*(-1)^mR_fixed*sqrt(2)/2*Interior_Model(ilayer).K_variable_p2p(i,3)/100/Delta;
+                    Interior_Model(ilayer).K_variable(end,3)=-1i*sqrt(2)/2*Interior_Model(ilayer).K_variable_p2p(i,3)/100/Delta;
                     Interior_Model(ilayer).K_variable(end+1,1)=nR_fixed;
                     Interior_Model(ilayer).K_variable(end,2)=mR_fixed;
-                    Interior_Model(ilayer).K_variable(end,3)=1i*sqrt(2)/2*Interior_Model(ilayer).K_variable_p2p(i,3)/100/Delta;
+                    Interior_Model(ilayer).K_variable(end,3)=1i*(-1)^mR_fixed*sqrt(2)/2*Interior_Model(ilayer).K_variable_p2p(i,3)/100/Delta;
                     % viscosity 
                     Interior_Model(ilayer).eta_variable(end+1,1)=nR_fixed;
                     Interior_Model(ilayer).eta_variable(end,2)=-mR_fixed;
-                    Interior_Model(ilayer).eta_variable(end,3)=-1i*(-1)^mR_fixed*sqrt(2)/2*Interior_Model(ilayer).eta_variable_p2p(i,3)/100/Delta;
+                    Interior_Model(ilayer).eta_variable(end,3)=-1i*sqrt(2)/2*Interior_Model(ilayer).eta_variable_p2p(i,3)/100/Delta;
                     Interior_Model(ilayer).eta_variable(end+1,1)=nR_fixed;
                     Interior_Model(ilayer).eta_variable(end,2)=mR_fixed;
-                    Interior_Model(ilayer).eta_variable(end,3)=1i*sqrt(2)/2*Interior_Model(ilayer).eta_variable_p2p(i,3)/100/Delta;
+                    Interior_Model(ilayer).eta_variable(end,3)=1i*(-1)^mR_fixed*sqrt(2)/2*Interior_Model(ilayer).eta_variable_p2p(i,3)/100/Delta;
                 end
             end
         % lateral variations provided as a map ----------------------------
@@ -665,7 +665,6 @@ for ilayer=2:Numerics.Nlayers
             % Check whether direct insertion of a lat-lon grid is used
             if ~isempty(Interior_Model(ilayer).mu_latlon)
                 [mu_zlonlat] = Interior_Model(ilayer).mu_latlon;
-
                 % Do a spectral decomposition of the shear modulus map for storage purposes
                 [temp_mu_stokes] = LatLon_SPH(mu_zlonlat);
                 Interior_Model(ilayer).mu_stokes_set_internal = temp_mu_stokes;
@@ -949,7 +948,7 @@ for ilayer=2:Numerics.Nlayers
             ind_mode = find(Interior_Model(ilayer).rheology_variable(:,1)==n_rheo_tot & ...
                            Interior_Model(ilayer).rheology_variable(:,2)==m_rheo_tot);
             if ~isempty(ind_mode)
-                temp_rheology_var(i,4) = Interior_Model(ilayer).rheology_variable(ind_mode,4);
+                temp_rheology_var(i,4) = sum(Interior_Model(ilayer).rheology_variable(ind_mode,4));
             end
         end
     
