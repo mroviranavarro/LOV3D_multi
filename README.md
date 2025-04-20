@@ -93,8 +93,8 @@ Licenses and copyright statements for [cmocean](https://github.com/chadagreene/c
 ## References
 
 This software have been used in the following publications
-
-- [Rovira-Navarro, M., Matsuyama, I., Berne, A. 2023](https://arxiv.org/abs/2311.15710). A Spectral Method to Compute the Tides of Laterally-Heterogeneous Bodies. arXiv e-prints. doi:10.48550/arXiv.2311.15710
+- [Rovira-Navarro, M., Matsuyama, I., Dirkx, D., Berne, A., Calliess, D., Fayolle, S. 2025](https://doi.org/10.1029/2025GL114708) Prospects of Using Tidal Tomography to Constrain Ganymede's Interior, Geophysical Research Letters
+- [Rovira-Navarro, M., Matsuyama, I., Berne, A. 2024](https://doi.org/10.3847/PSJ/ad381f). A Spectral Method to Compute the Tides of Laterally-Heterogeneous Bodies. Planetary Science Journal, 5
 - Rovira-Navarro, M.,Matsuyama, I. & Berne, A., 2023 Revealing lateral structures in the interiors of planets and moons from tidal observations. AGU Fall Meeting Abstracts (2023).  
 - [Rovira-Navarro, M. & Matsuyama, I. 2022](https://ui.adsabs.harvard.edu/abs/2022AGUFM.P45E2514R/abstract)., A Spectral Method to Study the Tides of Laterally Heterogenous Bodies.  AGU Fall Meeting Abstracts.  
 
