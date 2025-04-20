@@ -103,7 +103,7 @@ This software have been used in the following publications
 
 If you use this software please cite it as:
 
-- (Rovira-Navarro, M., Matsuyama, I., Berne, A. 2023)[https://doi.org/10.3847/PSJ/ad381f]. A Spectral Method to Compute the Tides of Laterally-Heterogeneous Bodies. Planetary Science Journal, 5
+- [Rovira-Navarro, M., Matsuyama, I., Berne, A. 2023](https://doi.org/10.3847/PSJ/ad381f). A Spectral Method to Compute the Tides of Laterally-Heterogeneous Bodies. Planetary Science Journal, 5
 
 ## Would you like to contribute?
 
